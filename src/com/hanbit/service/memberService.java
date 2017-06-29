@@ -1,7 +1,7 @@
 package com.hanbit.service;
 
 public class memberService {
-	private String userId, userPw, gender, name, ssn, loginId, loginPw;
+	private String userId, userPw, gender, name, ssn, age, loginId, loginPw, loginResult;
 
 	
 	public void setName(String name) {
@@ -11,15 +11,15 @@ public class memberService {
 		return name;
 	}
 	
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(String id) {
+		this.userId = id;
 	}
 	public String getUserId() {
 		return userId;
 	}
 	
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setUserPw(String pw) {
+		this.userPw = pw;
 	}
 	public String getUserPw() {
 		return userPw;
@@ -30,6 +30,19 @@ public class memberService {
 	}
 	public String getSSN() {
 		return ssn;
+	}
+	public void setAge() {
+		int sYear =Integer.parseInt(ssn.substring(0,2));
+		if(17-sYear>=0){
+			this.age=String.valueOf(2017-(sYear+2000));
+		}
+		else {
+			this.age = String.valueOf(2017-(sYear + 1900));
+		}
+
+	}
+	public String getAge() {
+		return age;
 	}
 	
 	public String getGender() {
@@ -71,27 +84,25 @@ public class memberService {
 				gender = "잘못된 값";
 				break;
 		}
-
 	}
-	public void setLogin(String id, String pw) {
-		if(id.equals(this.userId)&&pw.equals(this.userPw)){
-			loginId=toString();
+	public void setLogin(String loginId, String loginPw) {
+		if(userId.equals(loginId)){
+			if(userPw.equals(loginPw)){
+				loginResult=toString();
+			}else{
+				loginResult="비밀번호를 확인해주세요";
+			}
 		}
 		else{
-			loginId="로그인 실패";
+			loginResult="아이디를 확인해주세요";
 		}
-		this.userId = id;
-		this.userPw = pw;
 	}
 	public String getLogin() {
-		return loginId;
+		return loginResult;
 	}
 	
 	public String toString() {
-		String sYear = ssn.substring(0,2);
-		int year = Integer.parseInt(sYear);
-
-		return "welcome " + name + "(" + gender + ", " + ((17-year>=0) ? 2017-(year + 2000) + 1 : 2017-(year + 1900) + 1) + ")";
+		return "welcome " + name + "(" + gender + ", "+age+"살" + ")";
 	}
 
 }

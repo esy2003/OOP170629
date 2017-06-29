@@ -18,15 +18,20 @@ public class memberController {
 				System.out.println("이름");
 				String name = s.next();
 				memSer.setName(name);
+				
 				System.out.println("아이디");
-				String userId = s.next();
-				memSer.setUserId(userId);
+				String id = s.next();
+				memSer.setUserId(id);
+				
 				System.out.println("비밀번호");
-				String userPw = s.next();
-				memSer.setUserPw(userPw);
+				String pw = s.next();
+				memSer.setUserPw(pw);
+			
 				System.out.println("주민번호");
 				String ssn = s.next();
 				memSer.setSSN(ssn);
+				memSer.setAge();
+				memSer.setGender();
 				break;
 			case "2" :
 				System.out.println("ID 입력하세요");
@@ -35,7 +40,8 @@ public class memberController {
 				System.out.println("PW 입력하세요");
 				String loginPw = s.next();
 				memSer.setLoginPw(loginPw);
-				System.out.println(memSer);
+				memSer.setLogin(loginId, loginPw);
+				System.out.println(memSer.getLogin());
 				break;
 				default: break;
 			}
