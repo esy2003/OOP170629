@@ -2,7 +2,9 @@ package com.hanbit.oop.controller;
 
 import java.util.Scanner;
 
+import com.hanbit.service.BmiService;
 import com.hanbit.service.CalcService;
+import com.hanbit.service.GradeService;
 import com.hanbit.service.LeapYearService;
 import com.hanbit.service.SecondCalcService;
 import com.hanbit.service.TaxCalcService;
@@ -16,6 +18,8 @@ public class Controller {
 		SecondCalcService s3 = new SecondCalcService();
 		TaxCalcService s4 = new TaxCalcService();
 		gradeReportService s5 = new gradeReportService();
+		GradeService g = new GradeService();
+		BmiService b = new BmiService();
 		
 		while (true) {
 			System.out.println("");
@@ -32,14 +36,16 @@ public class Controller {
 				
 				System.out.print("height\n");
 				double height = s.nextDouble();
+				b.setHeight(height);
 
 				System.out.print("weight\n");
 				double weight = s.nextDouble();
 
-				String result = s1.execute(height, weight);
+				b.setBmi();
+				b.setResult();
 				
-				System.out.print(result);
-
+				System.out.println(b.getResult());
+				return;
 			case "2":
 				System.out.print("연도를 입력하세요");
 				int year = s.nextInt();
@@ -47,6 +53,7 @@ public class Controller {
 				String result2 = s2.LeapYearExe(year);
 
 				System.out.print(result2);
+				return;
 			case "3":
 				System.out.println("초를 시간과 분으로 바꾸어 주는 프로그램입니다.\n초를입력해주세요.");
 	               int sec = s.nextInt();
@@ -69,7 +76,7 @@ public class Controller {
 				System.out.println("--------------------------------");
 				System.out.println(name + " | " + taxRate);
 				System.out.print("********************************\n");
-
+				return;
 			case "5":
 				
 				//input
@@ -86,7 +93,7 @@ public class Controller {
 				
 				String gradeResult = s5.gradeavg(studentsName, kor, eng, math);
 				System.out.println(gradeResult);
-			
+				return;
 			case "6":
 				System.out.print("First num\n");
 				int firNum = s.nextInt();
@@ -96,8 +103,26 @@ public class Controller {
 				
 				System.out.print("Second num\n");
 				int secNum = s.nextInt();
-
-				
+				return;
+			case "7":
+				System.out.print("name\n");
+				String name1 = s.next();
+				g.setName(name1);
+				System.out.print("major\n");
+				String major = s.next();
+				g.setMajor(major);
+				System.out.print("kor\n");
+				int kor1 = s.nextInt();
+				g.setKor(kor1);
+				System.out.print("eng\n");
+				int eng1 = s.nextInt();
+				g.setEng(eng1);
+				System.out.print("math\n");
+				int math1 = s.nextInt();
+				g.setMath(math1);
+				g.setGrade();
+				System.out.println(g.toString());
+				break;
 			}
 		}
 	}

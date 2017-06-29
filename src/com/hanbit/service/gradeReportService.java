@@ -1,7 +1,11 @@
 package com.hanbit.service;
-
+//class
 public class gradeReportService {
+	// fiedl 지점
+
+	
 	public String gradeavg(String studentsName, int kor, int eng, int math) {
+		//method area
 		int total = kor + eng + math;
 		int avg = total / 3;
 
