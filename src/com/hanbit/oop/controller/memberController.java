@@ -1,51 +1,39 @@
 package com.hanbit.oop.controller;
 
-import java.util.Scanner;
+import com.hanbit.oop.domain.memberBean;
 import com.hanbit.service.memberService;
+import javax.swing.*;
 
 public class memberController {
+	
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
 		memberService memSer = new memberService();
+		memberBean member = new memberBean();
 		
 		while(true) {
-			System.out.println("0. 종료  1. 회원가입 2. 로그인");
-			switch (s.next()) {
+			//System.out.println("0. 종료  1. 회원가입 2. 로그인");
+			//String flag = s.next();
+			switch (JOptionPane.showInputDialog("0. 종료  1. 회원가입 2. 로그인")) {
 			case "0" :
 				System.out.println("시스템종료");
 				return;
 			case "1" :
-				System.out.println("이름");
-				String name = s.next();
-				memSer.setName(name);
-				
-				System.out.println("아이디");
-				String id = s.next();
-				memSer.setUserId(id);
-				
-				System.out.println("비밀번호");
-				String pw = s.next();
-				memSer.setUserPw(pw);
-			
-				System.out.println("주민번호");
-				String ssn = s.next();
-				memSer.setSSN(ssn);
-				memSer.setAge();
-				memSer.setGender();
+				member.setName(JOptionPane.showInputDialog("이름"));
+				member.setUserId(JOptionPane.showInputDialog("회원가입 아이디"));
+				member.setUserPw(JOptionPane.showInputDialog("회원가입 비밀번호"));
+				member.setSSN(JOptionPane.showInputDialog("주민번호"));
+				JOptionPane.showMessageDialog(null, memSer.join(member));
 				break;
 			case "2" :
-				System.out.println("ID 입력하세요");
-				String loginId = s.next();
-				memSer.setLoginId(loginId);
-				System.out.println("PW 입력하세요");
-				String loginPw = s.next();
-				memSer.setLoginPw(loginPw);
-				memSer.setLogin(loginId, loginPw);
-				System.out.println(memSer.getLogin());
+				member = new memberBean();
+				member.setUserId(JOptionPane.showInputDialog("로그인 아이디"));;
+				member.setUserPw(JOptionPane.showInputDialog("로그인 비밀번호"));
+				
+				JOptionPane.showMessageDialog(null, memSer.Login(member));
 				break;
-				default: break;
+			default:
+				break;
 			}
-
 		}
 	}
 }

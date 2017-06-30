@@ -1,71 +1,18 @@
 package com.hanbit.service;
 
+import javax.swing.JOptionPane;
+
+import com.hanbit.oop.domain.memberBean;
+
 public class memberService {
-	private String userId, userPw, gender, name, ssn, age, loginId, loginPw, loginResult;
-
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getName() {
-		return name;
+	memberBean session;
+	public memberService() {
+		session = new memberBean();
 	}
 	
-	public void setUserId(String id) {
-		this.userId = id;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	
-	public void setUserPw(String pw) {
-		this.userPw = pw;
-	}
-	public String getUserPw() {
-		return userPw;
-	}
-	
-	public void setSSN(String ssn) {
-		this.ssn = ssn;
-	}
-	public String getSSN() {
-		return ssn;
-	}
-	public void setAge() {
-		int sYear =Integer.parseInt(ssn.substring(0,2));
-		if(17-sYear>=0){
-			this.age=String.valueOf(2017-(sYear+2000));
-		}
-		else {
-			this.age = String.valueOf(2017-(sYear + 1900));
-		}
-
-	}
-	public String getAge() {
-		return age;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-	
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
-	}
-	public String getLoginId() {
-		return loginId;
-	}
-	
-	public void setLoginPw(String loginPw) {
-		this.loginPw = loginPw;
-	}
-	public String getLoginPw() {
-		return loginPw;
-	}
-	
-	public void setGender(){
-
-		char ch = ssn.charAt(7);
+	public String getGender(memberBean member) {
+		String gender = "";
+		char ch = member.getSSN().charAt(7);
 		
 		switch (ch) {
 			case '1' : case '3' : 
@@ -84,25 +31,37 @@ public class memberService {
 				gender = "잘못된 값";
 				break;
 		}
-	}
-	public void setLogin(String loginId, String loginPw) {
-		if(userId.equals(loginId)){
-			if(userPw.equals(loginPw)){
-				loginResult=toString();
-			}else{
-				loginResult="비밀번호를 확인해주세요";
-			}
-		}
-		else{
-			loginResult="아이디를 확인해주세요";
-		}
-	}
-	public String getLogin() {
-		return loginResult;
-	}
-	
-	public String toString() {
-		return "welcome " + name + "(" + gender + ", "+age+"살" + ")";
+		return gender;
 	}
 
+	public String getAge(memberBean member) {
+		int age = 0;
+		String sYear =member.getSSN().substring(0,2);
+		if(Integer.parseInt(sYear)>=17){
+			age = 2017 - Integer.parseInt(sYear) - 1900 + 1;
+		}
+		else {
+			age = 2017 - Integer.parseInt(sYear) - 2000 + 1;
+		}
+		return String.valueOf(age);
+	}
+		
+	public String join(memberBean member) {
+		session = member;
+		//밑의 4줄이 위의 한줄과 같음
+		
+		/*session.setName(member.getName());
+		session.setUserId(member.getUserId());
+		session.setUserPw(member.getUserPw());
+		session.setSSN(member.getSSN());*/
+		
+		//session 에 회원가입시 입력한 정보를 저장하는 소스
+		
+		return "환영합니다 " + session.getName() + "님";
+	}
+	
+	public String Login(memberBean member) {
+		return (session.getUserId().equals(member.getUserId()) && session.getUserPw().equals(member.getUserPw())) ?
+				"로그인 성공" + getAge(session)+ "살" + getGender(session) : "로그인 실패";
+		}
 }

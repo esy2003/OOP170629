@@ -1,7 +1,8 @@
 package com.hanbit.oop.controller;
 
 import java.util.Scanner;
-
+import javax.swing.*;
+import com.hanbit.oop.domain.GradeBean;
 import com.hanbit.service.BmiService;
 import com.hanbit.service.CalcService;
 import com.hanbit.service.GradeService;
@@ -10,9 +11,10 @@ import com.hanbit.service.SecondCalcService;
 import com.hanbit.service.TaxCalcService;
 import com.hanbit.service.gradeReportService;
 
-public class Controller {
+public class GradeController {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
+		GradeBean grade = new GradeBean();
 		CalcService s1 = new CalcService();
 		LeapYearService s2 = new LeapYearService();
 		SecondCalcService s3 = new SecondCalcService();
@@ -22,11 +24,10 @@ public class Controller {
 		BmiService b = new BmiService();
 		
 		while (true) {
-			System.out.println("");
+			/*System.out.println("");
 			System.out.println("0. end 1. bmi 2. LeapYear 3. SecCalc 4. TaxCalc 5. gradeReport 6. calculator");
-			String menu = s.next();
-
-			switch (menu) {
+			*/
+			switch (JOptionPane.showInputDialog("0. stop  7. grade")) {
 			case "0":
 				System.out.println("end");
 				return;
@@ -34,8 +35,8 @@ public class Controller {
 				
 				System.out.println("bmi");
 				
-				System.out.print("height\n");
 				double height = s.nextDouble();
+				
 				b.setHeight(height);
 
 				System.out.print("weight\n");
@@ -104,25 +105,19 @@ public class Controller {
 				System.out.print("Second num\n");
 				int secNum = s.nextInt();
 				return;
+			
 			case "7":
-				System.out.print("name\n");
-				String name1 = s.next();
-				g.setName(name1);
-				System.out.print("major\n");
-				String major = s.next();
-				g.setMajor(major);
-				System.out.print("kor\n");
-				int kor1 = s.nextInt();
-				g.setKor(kor1);
-				System.out.print("eng\n");
-				int eng1 = s.nextInt();
-				g.setEng(eng1);
-				System.out.print("math\n");
-				int math1 = s.nextInt();
-				g.setMath(math1);
-				g.setGrade();
-				System.out.println(g.toString());
+				grade.setName(JOptionPane.showInputDialog("이름"));
+				grade.setMajor(JOptionPane.showInputDialog("학과"));
+				grade.setKor(Integer.parseInt((JOptionPane.showInputDialog("국어점수"))));
+				grade.setEng(Integer.parseInt((JOptionPane.showInputDialog("영어점수"))));
+				grade.setMath(Integer.parseInt((JOptionPane.showInputDialog("수학점수"))));
+				JOptionPane.showMessageDialog(null, "총점: " + g.calcTotal(grade)+ "점");
+				JOptionPane.showMessageDialog(null, "평균: " + g.calcAvg(g.calcTotal(grade))+ "점");
+				JOptionPane.showMessageDialog(null, grade.getName() +" 님의 등급은 "+g.getGrade(g.calcAvg(g.calcTotal(grade))) + "입니다");
+				
 				break;
+
 			}
 		}
 	}
