@@ -1,13 +1,15 @@
 package com.hanbit.oop.controller;
 
 import com.hanbit.oop.domain.memberBean;
-import com.hanbit.service.memberService;
+import com.hanbit.oop.service.MemberService;
+import com.hanbit.oop.serviceImpl.memberServiceImpl;
+
 import javax.swing.*;
 
 public class memberController {
 	
 	public static void main(String[] args) {
-		memberService memSer = new memberService();
+		MemberService memSer = new memberServiceImpl();
 		memberBean member = new memberBean();
 		
 		while(true) {

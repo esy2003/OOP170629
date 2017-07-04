@@ -1,4 +1,4 @@
-package com.hanbit.service;
+package com.hanbit.oop.serviceImpl;
 
 public class CalendarService {
 	//필드에는 값을 할당하지 않는다. 그래서 밑의 이니셜라이징은 인트이지만 =0; 을 해주지않음.

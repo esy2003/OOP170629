@@ -1,15 +1,15 @@
-package com.hanbit.service;
-
-import javax.swing.JOptionPane;
+package com.hanbit.oop.serviceImpl;
 
 import com.hanbit.oop.domain.memberBean;
+import com.hanbit.oop.service.MemberService;
 
-public class memberService {
-	memberBean session;
-	public memberService() {
-		session = new memberBean();
-	}
-	
+public class memberServiceImpl implements MemberService {
+		memberBean session;
+		public memberServiceImpl() {
+			session = new memberBean();
+		}
+
+	@Override
 	public String getGender(memberBean member) {
 		String gender = "";
 		char ch = member.getSSN().charAt(7);
@@ -34,6 +34,7 @@ public class memberService {
 		return gender;
 	}
 
+	@Override
 	public String getAge(memberBean member) {
 		int age = 0;
 		String sYear =member.getSSN().substring(0,2);
@@ -45,7 +46,8 @@ public class memberService {
 		}
 		return String.valueOf(age);
 	}
-		
+
+	@Override
 	public String join(memberBean member) {
 		session = member;
 		//밑의 4줄이 위의 한줄과 같음
@@ -59,9 +61,11 @@ public class memberService {
 		
 		return "환영합니다 " + session.getName() + "님";
 	}
-	
+
+	@Override
 	public String Login(memberBean member) {
 		return (session.getUserId().equals(member.getUserId()) && session.getUserPw().equals(member.getUserPw())) ?
 				"로그인 성공" + getAge(session)+ "살" + getGender(session) : "로그인 실패";
-		}
+	}
+	
 }

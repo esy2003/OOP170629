@@ -1,4 +1,4 @@
-package com.hanbit.service;
+package com.hanbit.oop.serviceImpl;
 
 public class SecondCalcService {
 	public int[] SecondCalcexe(int sec) {

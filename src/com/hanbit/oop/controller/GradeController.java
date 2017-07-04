@@ -3,13 +3,15 @@ package com.hanbit.oop.controller;
 import java.util.Scanner;
 import javax.swing.*;
 import com.hanbit.oop.domain.GradeBean;
-import com.hanbit.service.BmiService;
-import com.hanbit.service.CalcService;
-import com.hanbit.service.GradeService;
-import com.hanbit.service.LeapYearService;
-import com.hanbit.service.SecondCalcService;
-import com.hanbit.service.TaxCalcService;
-import com.hanbit.service.gradeReportService;
+import com.hanbit.oop.service.GradeService;
+import com.hanbit.oop.serviceImpl.BmiService;
+import com.hanbit.oop.serviceImpl.CalcService;
+
+import com.hanbit.oop.serviceImpl.GradeServiceImpl;
+import com.hanbit.oop.serviceImpl.LeapYearService;
+import com.hanbit.oop.serviceImpl.SecondCalcService;
+import com.hanbit.oop.serviceImpl.TaxCalcService;
+import com.hanbit.oop.serviceImpl.gradeReportService;
 
 public class GradeController {
 	public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class GradeController {
 		SecondCalcService s3 = new SecondCalcService();
 		TaxCalcService s4 = new TaxCalcService();
 		gradeReportService s5 = new gradeReportService();
-		GradeService g = new GradeService();
+		GradeService g = new GradeServiceImpl();
 		BmiService b = new BmiService();
 		
 		while (true) {

@@ -2,6 +2,7 @@ package com.hanbit.oop.domain;
 
 public class memberBean {
 	private String userId, userPw, name, ssn;
+	public String searchId;
 
 	public void setName(String name) {
 		this.name = name;
@@ -30,8 +31,12 @@ public class memberBean {
 	public String getSSN() {
 		return ssn;
 	}
+/*	public void searchId(String id) {
+		this.searchId = id;
+	}
+*/	
 	public String toString() {
-		return null;//"welcome " + name + "(" + gender + ", "+age+"살" + ")";
+		return "welcome " + name + "( 유저Id : " + userId + ", 유저Pw : "+userPw+ "주민번호 : " + ssn + ")";
 	}
 
 }
